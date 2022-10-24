@@ -7,9 +7,9 @@
 }
 
 .incoming_msg {
-  background-color: $white;
+  background-color: var(--background);
   border-radius: 5px;
-  color: $blue;
+  color: var(--text);
   padding: 10px 15px 10px 15px;
   overflow: hidden;
 }

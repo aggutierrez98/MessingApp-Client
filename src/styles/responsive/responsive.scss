@@ -21,7 +21,7 @@
     padding: 5px;
     cursor: pointer;
     border-radius: 20px;
-    color: $dark-grey;
+    color: var(--background-back);
     &:hover {
       background-color: rgba(128, 128, 128, 0.25);
     }
@@ -130,7 +130,7 @@
     width: 80%;
     height: auto;
     padding: 15px 15px;
-    background-color: $white;
+    background-color: var(--background);
     border-radius: 8px;
     font-family: $monserrat;
     & img {
@@ -139,7 +139,7 @@
   }
 
   .confirmacion-eliminar-contacto_titulo {
-    color: $dark-blue;
+    color: var(--alternative-blue);
     font-size: 18px;
     margin-top: 10px;
   }

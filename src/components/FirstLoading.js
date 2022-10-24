@@ -2,7 +2,6 @@ import React from 'react'
 
 export const FirstLoading = ({ loading }) => {
 
-    console.log("EN FIRST LOADING");
     return (
         <>
             {

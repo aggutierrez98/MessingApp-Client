@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 1;
   right: 5px;
-  background-color: $white;
+  background-color: var(--background);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border-radius: 2px;
   padding: 8px 10px;
@@ -19,13 +19,13 @@
 
 .menu-usario_button {
   text-overflow: ellipsis;
-  color: $dark-blue;
+  color: var(--text);
   padding: 12px;
   font-size: 15px;
   text-align: left;
 
   &:hover {
-    color: $grey;
+    color: var(--blue);
   }
 }
 

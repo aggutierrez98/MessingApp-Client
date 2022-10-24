@@ -1,17 +1,22 @@
 .user-profile {
   padding: 10px 10px 10px 10px;
-  border-bottom: 1px solid #c4c4c4;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 55px;
-  background-color: $light-grey;
+  background-color: var(--secondary);
 }
 
 .info-user {
   display: flex;
   align-items: center;
   width: 85%;
+  p {
+    color: var(--text);
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+  }
 }
 
 .info-user-img {

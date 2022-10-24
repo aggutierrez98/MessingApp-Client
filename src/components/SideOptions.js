@@ -8,9 +8,7 @@ const SideOptionsBase = ({ render, cerrar, children, title }) => {
     const cerrarOptions = () => {
         cerrar(false)
     }
-
     const shouldRenderChild = useDelayUnmount(render, 250);
-
     const wrapperRef = useRef(null);
     useEscapeKeyAlerter(wrapperRef, cerrar);
 

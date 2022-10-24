@@ -7,15 +7,19 @@
 }
 
 .sent_msg {
-  background-color: $blue;
+  background-color: var(--blue);
   border-radius: 5px;
-  color: $white;
+  color: #ffffff;
   padding: 10px 15px 10px 15px;
   overflow: hidden;
+  p {
+    word-wrap: break-word;
+    white-space: normal;
+  }
 }
 
 .time_date {
-  color: $grey;
+  color: var(--alternative);
   display: block;
   font-size: 12px;
   margin: 8px 0 0;

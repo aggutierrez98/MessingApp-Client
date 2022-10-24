@@ -1,5 +1,4 @@
 .chat_list {
-  // border-bottom: 1px solid #c4c4c4;
   cursor: pointer;
   margin: 0;
   padding: 18px 10px 10px;
@@ -8,7 +7,7 @@
 }
 
 .active_chat {
-  background: $white;
+  background: var(--background);
 }
 
 .chat_people {
@@ -39,7 +38,7 @@
 
 .chat_ib h5 {
   font-size: 15px;
-  color: #464646;
+  color: var(--text);
 }
 
 .chat_ib p {
@@ -92,6 +91,6 @@
   width: 20px;
   height: 20px;
   background-color: $blue;
-  color: $white;
+  color: var(--background);
   border-radius: 30px;
 }

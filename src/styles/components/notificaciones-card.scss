@@ -12,23 +12,26 @@
   width: 80px;
 }
 .notificacion--card__button {
-  color: $blue;
+  color: var(--blue);
   font-size: 38px;
   height: 30px;
   border-radius: 25px;
   transition: color ease 0.2s;
 
   &:hover {
-    color: $grey;
+    color: var(--alternative);
   }
 }
 
 .notificacion--card__title {
-  color: $blue;
+  color: var(--blue);
   font-size: 20px;
+}
+.notificacion--card__text {
+  color: var(--text);
 }
 
 .notificacion--card__fecha {
-  color: $grey;
+  color: var(--alternative);
   font-size: 15px;
 }

@@ -32,10 +32,10 @@ button:hover {
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: $white;
+  background-color: var(--background);
   align-items: center;
   justify-content: center;
-  color: $blue;
+  color: var(--blue);
   font-family: $monserrat;
 }
 
@@ -44,7 +44,7 @@ button:hover {
   display: flex;
   width: 500px;
   padding: 1%;
-  background-color: $white;
+  background-color: var(--background);
   border-radius: 5px;
   flex-direction: column;
 }
@@ -64,7 +64,7 @@ button:hover {
 
 .input-auth {
   width: 100%;
-  color: $blue;
+  color: var(--blue);
   font-size: 18px;
   margin-bottom: 5px;
   padding-left: 5px;
@@ -118,11 +118,11 @@ button:hover {
   content: " ";
   background-color: transparent;
   margin-left: 10px;
-  color: $blue;
+  color: var(--blue);
   width: 20px;
   height: 20px;
   visibility: visible;
-  border: 1px solid $blue;
+  border: 1px solid var(--blue);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,7 +148,7 @@ button:hover {
 
 .txt1:hover {
   font-size: 16px;
-  color: $blue;
+  color: var(--blue);
   text-decoration: none;
 }
 
@@ -160,14 +160,14 @@ button:hover {
 
 .login-form-button-container-button {
   font-size: 16px;
-  color: $white;
+  color: var(--background);
   line-height: 1.2;
   text-transform: uppercase;
   justify-content: center;
   align-items: center;
   width: 92%;
   height: 62px;
-  background-color: $blue;
+  background-color: var(--blue);
   border-radius: 3px;
   cursor: pointer;
   margin-bottom: 3%;
@@ -180,11 +180,11 @@ button:hover {
 }
 
 .login-form-button-container-button:hover {
-  background-color: darken($color: $dark-blue, $amount: 0.8);
+  background-color: var(--alternative-blue);
 }
 
 .login-form-button-container-button:disabled {
-  background-color: $dark-grey;
+  background-color: var(--background-back);
   pointer-events: none;
 }
 

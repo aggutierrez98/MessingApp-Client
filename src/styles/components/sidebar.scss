@@ -4,6 +4,7 @@
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
+    appearance: none;
     -webkit-appearance: none;
     margin-right: 2px;
 

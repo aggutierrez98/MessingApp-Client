@@ -1,11 +1,10 @@
 .message-profile {
   height: 55px;
-  background-color: $light-grey;
+  background-color: var(--secondary);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #c4c4c4;
 }
 
 .info-contacto {
@@ -32,6 +31,7 @@
 .info-contacto-nombre {
   width: 85%;
   margin-left: 10px;
+  color: var(--text);
 }
 
 .message-profile-button {
@@ -46,10 +46,13 @@
 }
 
 .message-profile-button ion-icon {
-  color: $dark-grey;
+  color: var(--background-back);
   font-size: 30px;
 }
 
 .boton-navegacion-atras {
   display: none;
+  ion-icon {
+    color: var(--text);
+  }
 }

@@ -8,11 +8,13 @@
   background-position: center;
   background-repeat: repeat;
   background-size: contain;
-  background-color: lighten($color: $grey, $amount: 30);
+  background-color: var(--background-messages);
   padding-top: 8px;
   padding-bottom: 5px;
+  padding-left: 8px;
 
   &::-webkit-scrollbar {
+    appearance: none;
     -webkit-appearance: none;
     margin-right: 2px;
 

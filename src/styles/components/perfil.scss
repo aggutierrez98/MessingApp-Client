@@ -2,12 +2,35 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  background-color: $light-grey;
-  width: 35%;
+  background-color: var(--secondary);
+  width: calc(35% - 1px);
   height: 100%;
   z-index: 2;
-  border-right: 1px #c4c4c4 solid;
   min-width: 300px;
+  overflow-y: overlay;
+
+  &::-webkit-scrollbar {
+    appearance: none;
+    -webkit-appearance: none;
+    margin-right: 2px;
+
+    &:vertical {
+      width: 7px;
+    }
+    &:horizontal {
+      height: 10px;
+    }
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 122, 145, 0.5);
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 }
 
 .desaparecer {
@@ -19,7 +42,7 @@
 }
 
 .perfil_contenedor-boton {
-  background-color: $blue;
+  background-color: var(--blue);
   padding-top: 70px;
   padding-bottom: 20px;
   display: flex;
@@ -27,7 +50,7 @@
 
 .perfil_boton {
   display: flex;
-  color: $white;
+  color: var(--background);
   font-size: 25px;
   margin-left: 20px;
   flex-grow: 1;
@@ -56,7 +79,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: $white;
+  background-color: var(--background);
   padding-left: 30px;
   margin-bottom: 20px;
   padding-bottom: 20px;
@@ -64,7 +87,7 @@
   word-wrap: break-word;
 }
 .perfil_contenedor-info_titulo {
-  color: $grey;
+  color: var(--alternative);
   margin-bottom: 22px;
   margin-top: 15px;
 }
@@ -78,16 +101,18 @@
   margin-right: 5%;
   width: 82%;
   background-color: transparent;
+  color: var(--alternative);
 }
 
 .info-input {
   border: none;
-  border-bottom: 2px solid $blue;
+  border-bottom: 2px solid var(--blue);
   resize: none;
   background-color: transparent;
   font-size: 18px;
   width: 95%;
   outline: none;
+  color: var(--text);
 }
 
 .perfil_info_contenedor {
@@ -95,7 +120,7 @@
   flex-direction: row;
 
   & ion-icon {
-    color: $blue;
+    color: var(--blue);
     font-size: 20px;
   }
 }

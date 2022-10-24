@@ -7,6 +7,26 @@ html,
 body {
   height: 100vh;
   width: 100vw;
+
+  --background: #{$white};
+  --background-messages: #{$secondary-grey};
+  --background-back: #{$dark-grey};
+  --secondary: #{$light-grey};
+  --alternative: #{$grey};
+  --blue: #{$blue};
+  --alternative--blue: #{$dark-blue};
+  --text: #2e2e2e;
+
+  &.dark-mode {
+    --background: #{$white-dark};
+    --background-messages: #{$secondary-grey-dark};
+    --background-back: #{$dark-grey-dark};
+    --secondary: #{$light-grey-dark};
+    --alternative: #{$grey-dark};
+    --blue: #{$blue-light};
+    --alternative--blue: #{$blue};
+    --text: #e2e2e2;
+  }
 }
 
 main {

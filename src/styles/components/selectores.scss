@@ -1,4 +1,8 @@
 .selector__container {
   position: relative;
   margin-right: 10px;
+
+  ion-icon {
+    color: var(--text);
+  }
 }

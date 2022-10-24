@@ -10,7 +10,7 @@
   height: 100px;
 }
 .confirmacion-eliminar-contacto_titulo {
-  color: $dark-blue;
+  color: var(--text);
   font-size: 25px;
   margin-top: 40px;
 }
@@ -27,20 +27,20 @@
   font-size: 15px;
   padding: 15px 20px;
   border-radius: 3px;
-  color: $white;
+  color: var(--background);
   transition: background-color ease 0.2s;
 }
 
 .confirmar {
-  background-color: $blue;
+  background-color: var(--blue);
   &:hover {
-    background-color: darken($color: $blue, $amount: 5);
+    background-color: var(--blue);
   }
 }
 
 .rechazar {
-  background-color: $grey;
+  background-color: var(--alternative);
   &:hover {
-    background-color: darken($color: $grey, $amount: 7);
+    background-color: var(--background-messages);
   }
 }

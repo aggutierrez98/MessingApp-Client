@@ -2,7 +2,7 @@
   display: flex;
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: $dark-grey;
+  background-color: var(--background-back);
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
 
 .inbox_msg {
   position: relative;
-  background-color: $white;
+  background-color: var(--background);
   width: 1400px;
   height: 100%;
   display: flex;

@@ -19,11 +19,11 @@
 }
 
 .usuario-card_name {
-  color: $blue;
+  color: var(--blue);
 }
 
 .usuario-card_email {
-  color: $dark-grey;
+  color: var(--alternative);
   font-size: 15px;
 }
 
@@ -38,7 +38,7 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  color: $blue;
+  color: var(--blue);
   margin-left: 35%;
   font-size: 30px;
   border-radius: 25px;
