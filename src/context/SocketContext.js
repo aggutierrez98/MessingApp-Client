@@ -13,7 +13,7 @@ export const SocketProvider = ({ children }) => {
 
     const dispatch = useDispatch();
 
-    const { socket, online, conectarSocket, desconectarSocket } = useSocket('http://localhost:8080');
+    const { socket, online, conectarSocket, desconectarSocket } = useSocket(process.env.REACT_APP_API_URL);
     const { logged } = useSelector(state => state.auth)
 
     useEffect(() => {
