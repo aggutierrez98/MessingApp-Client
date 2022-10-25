@@ -1,9 +1,24 @@
+.Toastify__toast {
+  background-color: var(--background);
+}
+
 .Toastify__toast-body {
   font-family: $monserrat;
   font-size: 18px;
-  color: var(--blue);
+  color: var(--text);
+
+  @media screen and (max-width: 650px) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 13px;
+  }
 }
 
 .Toastify__toast-icon {
   margin-right: 20px;
+}
+
+.Toastify__close-button {
+  color: var(--text);
 }
