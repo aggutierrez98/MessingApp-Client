@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Loader } from '../components/Loader';
 import { fetchSinToken } from '../helpers/fetch';
 
-export const ConfirmationPage = () => {
+function ConfirmationPage() {
 
     const { id } = useParams();
 
@@ -43,3 +43,5 @@ export const ConfirmationPage = () => {
         </div>
     )
 }
+
+export default ConfirmationPage

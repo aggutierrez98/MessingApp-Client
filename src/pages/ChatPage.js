@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { Loader } from '../components/Loader'
 import { useMediaQuery } from 'react-responsive'
 
-export const ChatPage = () => {
+function ChatPage () {
 
     const { chatActivo, loaded } = useSelector(state => state.chat)
 
@@ -65,7 +65,6 @@ export const ChatPage = () => {
             </>
         )
     }
-
-
-
 }
+
+export default ChatPage

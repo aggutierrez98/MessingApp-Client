@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     BrowserRouter as Router,
@@ -7,10 +7,20 @@ import {
 } from "react-router-dom";
 import { verificaToken } from "../actions/auth";
 import { Loader } from "../components/Loader";
-import { ChatPage } from "../pages/ChatPage";
-import { AuthRouter } from "./AuthRouter";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+
+// import RegisterPage from "../pages/RegisterPage";
+// import LoginPage from "../pages/LoginPage";
+// import SendConfirmationEmailPage from "../pages/SendConfirmationEmailPage";
+// import ConfirmationPage from "../pages/ConfirmationPage";
+// import ChatPage from "../pages/ChatPage";
+
+const RegisterPage = lazy(() => import(/* webpackChunkName: "RegisterPage" */"../pages/RegisterPage"));
+const LoginPage = lazy(() => import(/* webpackChunkName: "LoginPage" */"../pages/LoginPage"));
+const SendConfirmationEmailPage = lazy(() => import(/* webpackChunkName: "SendConfirmationEmailPage" */"../pages/SendConfirmationEmailPage"));
+const ConfirmationPage = lazy(() => import(/* webpackChunkName: "ConfirmationPage" */"../pages/ConfirmationPage"));
+const ChatPage = lazy(() => import(/* webpackChunkName: "ChatPage" */"../pages/ChatPage"));
 
 export const AppRouter = () => {
 
@@ -27,15 +37,49 @@ export const AppRouter = () => {
     }
 
     return (
-        <Router>
-            <div>
-                <Switch>
-                    <PublicRoute isAutenticated={logged} path="/auth" component={AuthRouter} />
-                    <PrivateRoute isAutenticated={logged} exact path="/" component={ChatPage} />
-
-                    <Redirect to="/" />
-                </Switch>
-            </div>
-        </Router>
+        <Suspense fallback={<Loader />}>
+            <Router>
+                <div>
+                    <Switch>
+                        <PublicRoute
+                            key="/auth/login"
+                            path="/auth/login"
+                            exact
+                            component={LoginPage}
+                            isAuthenticated={!!logged}
+                        />
+                        <PublicRoute
+                            key="/auth/register"
+                            path="/auth/register"
+                            exact
+                            component={RegisterPage}
+                            isAuthenticated={!!logged}
+                        />
+                        <PublicRoute
+                            key="/auth/register/send-email"
+                            path="/auth/register/send-email"
+                            exact
+                            component={SendConfirmationEmailPage}
+                            isAuthenticated={!!logged}
+                        />
+                        <PublicRoute
+                            key="/auth/register/confirmation/:id"
+                            path="/auth/register/confirmation/:id"
+                            exact
+                            component={ConfirmationPage}
+                            isAuthenticated={!!logged}
+                        />
+                        <PrivateRoute
+                            key="/"
+                            path="/"
+                            exact
+                            component={ChatPage}
+                            isAuthenticated={!!logged}
+                        />
+                        <Redirect to="/" />
+                    </Switch>
+                </div>
+            </Router>
+        </Suspense>
     )
 }

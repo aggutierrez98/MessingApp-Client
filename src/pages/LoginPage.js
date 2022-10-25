@@ -5,7 +5,7 @@ import { startLogin } from '../actions/auth';
 import * as yup from "yup";
 import { Loader } from '../components/Loader';
 
-export const LoginPage = () => {
+function LoginPage() {
 
     const dispatch = useDispatch();
 
@@ -125,3 +125,5 @@ export const LoginPage = () => {
         </div>
     )
 }
+
+export default LoginPage

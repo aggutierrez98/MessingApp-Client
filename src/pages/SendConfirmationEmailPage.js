@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { Loader } from '../components/Loader';
 import { fetchSinToken } from '../helpers/fetch';
 
-export const SendConfirmationEmailPage = ({ location }) => {
+function SendConfirmationEmailPage ({ location }) {
 
     const [enviado, setenviado] = useState({
         send: false,
@@ -45,3 +45,5 @@ export const SendConfirmationEmailPage = ({ location }) => {
     }
 
 }
+
+export default SendConfirmationEmailPage

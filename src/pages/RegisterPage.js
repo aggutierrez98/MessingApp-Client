@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from "yup";
 import { Loader } from '../components/Loader';
 
-export const RegisterPage = ({ history }) => {
+function RegisterPage ({ history }) {
 
     const validationSchema = yup.object({
         name: yup
@@ -105,3 +105,5 @@ export const RegisterPage = ({ history }) => {
         </div>
     )
 }
+
+export default RegisterPage
