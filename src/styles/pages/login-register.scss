@@ -44,7 +44,7 @@ button:hover {
   display: flex;
   width: 500px;
   padding: 1%;
-  background-color: var(--background);
+  background-color: var(--background-back);
   border-radius: 5px;
   flex-direction: column;
 }
@@ -76,6 +76,11 @@ button:hover {
   background: linear-gradient(currentColor 0 0) bottom / var(--d, 0) 2px
     no-repeat;
   transition: 0.5s;
+
+  &:-webkit-autofill {
+    background-clip: text;
+    -webkit-text-fill-color: var(--text);
+  }
 }
 
 .input-auth:focus {
@@ -180,11 +185,11 @@ button:hover {
 }
 
 .login-form-button-container-button:hover {
-  background-color: var(--alternative-blue);
+  background-color: var(--alternative--blue);
 }
 
 .login-form-button-container-button:disabled {
-  background-color: var(--background-back);
+  background-color: var(--secondary);
   pointer-events: none;
 }
 
