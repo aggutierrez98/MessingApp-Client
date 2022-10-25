@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { startLogin } from '../actions/auth';
 import * as yup from "yup";
+import { Loader } from '../components/Loader';
 
 export const LoginPage = () => {
 
@@ -117,6 +118,7 @@ export const LoginPage = () => {
                                     Ingresar
                                 </button>
                             </div>
+                            <Loader loading={isSubmitting} />
                         </Form>
                 }
             </Formik>

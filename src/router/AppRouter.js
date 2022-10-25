@@ -20,7 +20,6 @@ export const AppRouter = () => {
 
     useEffect(() => {
         dispatch(verificaToken());
-
     }, [dispatch]);
 
     if (checking) {

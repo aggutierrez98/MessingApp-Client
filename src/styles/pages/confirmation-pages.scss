@@ -2,7 +2,7 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: var(--background);
+  background-color: var(--background-back);
   align-items: center;
   justify-content: center;
   color: var(--blue);
@@ -34,10 +34,12 @@
   margin-bottom: 45px;
   width: 85%;
   text-align: center;
+  color: var(--text);
 }
 
 .confirmation-text {
   font-size: 20px;
+  color: var(--alternative);
 }
 
 .confirmation-send {
@@ -64,15 +66,15 @@
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
-}
 
-.confirmation-button:hover {
-  background-color: var(--alternative-blue);
-}
+  &:hover {
+    background-color: var(--alternative--blue);
+  }
 
-.confirmation-button:disabled {
-  background-color: var(--background-back);
-  pointer-events: none;
+  &:disabled {
+    background-color: var(--alternative);
+    pointer-events: none;
+  }
 }
 
 .txt-verification {

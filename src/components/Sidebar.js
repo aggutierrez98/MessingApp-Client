@@ -33,6 +33,13 @@ export const Sidebar = () => {
                 )
             }
 
+            {contactosMostrados.length === 0 &&
+                <div className="sin-contactos">
+                    <h3>No tienes contactos</h3>
+                    <p>Agrega uno para comenzar</p>
+                </div>
+            }
+
             <div className="extra_space"></div>
 
         </div>
