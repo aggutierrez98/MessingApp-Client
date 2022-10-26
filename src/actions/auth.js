@@ -4,26 +4,9 @@ import { descargarChats } from "./chat";
 import { cargarContactos, cargarNotificaciones, descargarContactos } from "./contactos";
 import { cargarDatos, descargarDatos } from "./usuario";
 
-export const startRegister = async (nombre, email, password, setFieldError, setSubmitting, navigate) => {
+export const startRegister = async (nombre, email, password) => {
     const resp = await fetchSinToken("login/new", { nombre, email, password }, "POST")
-    const { ok, errors } = resp;
-
-    if (ok) {
-        navigate({
-            to:  "/send-email",
-            state: {
-                usuario: {
-                    nombre, email, password
-                }
-            }
-        })
-     
-    } else {
-        setFieldError("name", errors[0].msg);
-        setFieldError("email", errors[0].msg);
-        setFieldError("password", errors[0].msg);
-        setSubmitting(false)
-    }
+    return resp
 }
 
 export const startLogin = (email, password) => {

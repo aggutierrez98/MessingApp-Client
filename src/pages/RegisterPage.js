@@ -20,7 +20,24 @@ function RegisterPage () {
 
     const onSubmit = (values, { setFieldError, setSubmitting }) => {
         const { name, email, password } = values;
-        startRegister(name, email, password, setFieldError, setSubmitting, navigate)
+        startRegister(name, email, password, setFieldError, setSubmitting, navigate).then((resp) => {
+            const { ok, errors } = resp
+
+            if(ok){
+                navigate("/send-email", {
+                    state: {
+                        usuario: {
+                            nombre: name, email, password
+                        }
+                    }
+                })
+            }else {
+                setFieldError("name", errors[0].msg);
+                setFieldError("email", errors[0].msg);
+                setFieldError("password", errors[0].msg);
+                setSubmitting(false)
+            }
+        })
     };
 
     return (
