@@ -6,7 +6,6 @@ import * as yup from "yup";
 import { Loader } from '../components/Loader';
 
 function LoginPage() {
-
     const dispatch = useDispatch();
 
     const validationSchema = yup.object({

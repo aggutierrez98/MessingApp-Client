@@ -4,19 +4,20 @@ import { descargarChats } from "./chat";
 import { cargarContactos, cargarNotificaciones, descargarContactos } from "./contactos";
 import { cargarDatos, descargarDatos } from "./usuario";
 
-export const startRegister = async (nombre, email, password, setFieldError, setSubmitting, history) => {
+export const startRegister = async (nombre, email, password, setFieldError, setSubmitting, navigate) => {
     const resp = await fetchSinToken("login/new", { nombre, email, password }, "POST")
-
     const { ok, errors } = resp;
 
     if (ok) {
-        history.push({
-            pathname: "/send-email", state: {
+        navigate({
+            to:  "/send-email",
+            state: {
                 usuario: {
                     nombre, email, password
                 }
             }
-        });
+        })
+     
     } else {
         setFieldError("name", errors[0].msg);
         setFieldError("email", errors[0].msg);

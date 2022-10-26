@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { startRegister } from '../actions/auth';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from "yup";
 import { Loader } from '../components/Loader';
 
-function RegisterPage ({ history }) {
+function RegisterPage () {
+
+    let navigate = useNavigate();
 
     const validationSchema = yup.object({
         name: yup
@@ -18,7 +20,7 @@ function RegisterPage ({ history }) {
 
     const onSubmit = (values, { setFieldError, setSubmitting }) => {
         const { name, email, password } = values;
-        startRegister(name, email, password, setFieldError, setSubmitting, history)
+        startRegister(name, email, password, setFieldError, setSubmitting, navigate)
     };
 
     return (
