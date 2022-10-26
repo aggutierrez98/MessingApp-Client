@@ -104,7 +104,7 @@ function LoginPage() {
                             </div>
 
                             <div className="link-anchor">
-                                <Link to="/auth/register" className="txt1">
+                                <Link to="/register" className="txt1">
                                     Nueva cuenta?
                                 </Link>
                             </div>

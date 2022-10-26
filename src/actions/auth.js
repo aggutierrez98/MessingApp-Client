@@ -11,7 +11,7 @@ export const startRegister = async (nombre, email, password, setFieldError, setS
 
     if (ok) {
         history.push({
-            pathname: "/auth/register/send-email", state: {
+            pathname: "/send-email", state: {
                 usuario: {
                     nombre, email, password
                 }

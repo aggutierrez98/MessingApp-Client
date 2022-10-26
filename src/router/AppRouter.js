@@ -10,17 +10,17 @@ import { Loader } from "../components/Loader";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 
-// import RegisterPage from "../pages/RegisterPage";
-// import LoginPage from "../pages/LoginPage";
-// import SendConfirmationEmailPage from "../pages/SendConfirmationEmailPage";
-// import ConfirmationPage from "../pages/ConfirmationPage";
-// import ChatPage from "../pages/ChatPage";
+import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "../pages/LoginPage";
+import SendConfirmationEmailPage from "../pages/SendConfirmationEmailPage";
+import ConfirmationPage from "../pages/ConfirmationPage";
+import ChatPage from "../pages/ChatPage";
 
-const RegisterPage = lazy(() => import(/* webpackChunkName: "RegisterPage" */"../pages/RegisterPage"));
-const LoginPage = lazy(() => import(/* webpackChunkName: "LoginPage" */"../pages/LoginPage"));
-const SendConfirmationEmailPage = lazy(() => import(/* webpackChunkName: "SendConfirmationEmailPage" */"../pages/SendConfirmationEmailPage"));
-const ConfirmationPage = lazy(() => import(/* webpackChunkName: "ConfirmationPage" */"../pages/ConfirmationPage"));
-const ChatPage = lazy(() => import(/* webpackChunkName: "ChatPage" */"../pages/ChatPage"));
+// const RegisterPage = lazy(() => import(/* webpackChunkName: "RegisterPage" */"../pages/RegisterPage"));
+// const LoginPage = lazy(() => import(/* webpackChunkName: "LoginPage" */"../pages/LoginPage"));
+// const SendConfirmationEmailPage = lazy(() => import(/* webpackChunkName: "SendConfirmationEmailPage" */"../pages/SendConfirmationEmailPage"));
+// const ConfirmationPage = lazy(() => import(/* webpackChunkName: "ConfirmationPage" */"../pages/ConfirmationPage"));
+// const ChatPage = lazy(() => import(/* webpackChunkName: "ChatPage" */"../pages/ChatPage"));
 
 export const AppRouter = () => {
 
@@ -37,34 +37,34 @@ export const AppRouter = () => {
     }
 
     return (
-        <Suspense fallback={<Loader />}>
+        // <Suspense fallback={<Loader />}>
             <Router>
                 <div>
                     <Switch>
                         <PublicRoute
-                            key="/auth/login"
-                            path="/auth/login"
+                            key="/login"
+                            path="/login"
                             exact
                             component={LoginPage}
                             isAuthenticated={!!logged}
                         />
                         <PublicRoute
-                            key="/auth/register"
-                            path="/auth/register"
+                            key="/register"
+                            path="/register"
                             exact
                             component={RegisterPage}
                             isAuthenticated={!!logged}
                         />
                         <PublicRoute
-                            key="/auth/register/send-email"
-                            path="/auth/register/send-email"
+                            key="/send-email"
+                            path="/send-email"
                             exact
                             component={SendConfirmationEmailPage}
                             isAuthenticated={!!logged}
                         />
                         <PublicRoute
-                            key="/auth/register/confirmation/:id"
-                            path="/auth/register/confirmation/:id"
+                            key="/confirmation/:id"
+                            path="/confirmation/:id"
                             exact
                             component={ConfirmationPage}
                             isAuthenticated={!!logged}
@@ -80,6 +80,6 @@ export const AppRouter = () => {
                     </Switch>
                 </div>
             </Router>
-        </Suspense>
+        // </Suspense>
     )
 }

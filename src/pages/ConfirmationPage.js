@@ -36,7 +36,7 @@ function ConfirmationPage() {
                         ? <h2 className="confirmation-title">Verificando Correctamente</h2>
                         : <h2 className="confirmation-title">Error al verificar</h2>
                 }
-                <Link to="/auth/login" className="txt-verification">
+                <Link to="/login" className="txt-verification">
                     Ir a Inicio de sesion
                 </Link>
             </div>

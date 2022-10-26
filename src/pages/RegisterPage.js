@@ -17,9 +17,7 @@ function RegisterPage ({ history }) {
     })
 
     const onSubmit = (values, { setFieldError, setSubmitting }) => {
-
         const { name, email, password } = values;
-
         startRegister(name, email, password, setFieldError, setSubmitting, history)
     };
 
@@ -83,7 +81,7 @@ function RegisterPage ({ history }) {
 
                             <div className="link-anchor">
                                 <div className="text-right">
-                                    <Link to="/auth/login" className="txt1">
+                                    <Link to="/login" className="txt1">
                                         Ya tienes cuenta?
                                     </Link>
                                 </div>

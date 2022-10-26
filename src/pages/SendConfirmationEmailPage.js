@@ -22,7 +22,7 @@ function SendConfirmationEmailPage ({ location }) {
     }
 
     if (!location.state?.usuario?.email) {
-        return <Redirect to="/auth/login" />
+        return <Redirect to="/login" />
     }
 
     else {
