@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Redirect,
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate,
 } from "react-router-dom";
 import { verificaToken } from "../actions/auth";
 import { Loader } from "../components/Loader";
-import { PrivateRoute } from "./PrivateRoute";
-import { PublicRoute } from "./PublicRoute";
+import { Private } from "./Private";
+import { Public } from "./Public";
 
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
@@ -38,48 +39,67 @@ export const AppRouter = () => {
 
     return (
         // <Suspense fallback={<Loader />}>
-            <Router>
-                <div>
-                    <Switch>
-                        <PublicRoute
-                            key="/login"
-                            path="/login"
-                            exact
-                            component={LoginPage}
-                            isAuthenticated={!!logged}
-                        />
-                        <PublicRoute
-                            key="/register"
-                            path="/register"
-                            exact
-                            component={RegisterPage}
-                            isAuthenticated={!!logged}
-                        />
-                        <PublicRoute
-                            key="/send-email"
-                            path="/send-email"
-                            exact
-                            component={SendConfirmationEmailPage}
-                            isAuthenticated={!!logged}
-                        />
-                        <PublicRoute
-                            key="/confirmation/:id"
-                            path="/confirmation/:id"
-                            exact
-                            component={ConfirmationPage}
-                            isAuthenticated={!!logged}
-                        />
-                        <PrivateRoute
-                            key="/"
-                            path="/"
-                            exact
-                            component={ChatPage}
-                            isAuthenticated={!!logged}
-                        />
-                        <Redirect to="/" />
-                    </Switch>
-                </div>
-            </Router>
+        <BrowserRouter>
+            <div>
+                <Routes>
+                    <Route path="/login"
+                        element={
+                            <Public
+                                isAuthenticated={!!logged}
+                            >
+                                <LoginPage />
+                            </Public>
+                        }
+                    >
+                    </Route>
+                    <Route
+                        path="/register"
+                        element={
+                            <Public
+                                isAuthenticated={!!logged}
+                            >
+                                <RegisterPage />
+                            </Public>
+                        }
+                    />
+                    <Route
+                        path="/send-email"
+                        element={
+                            <Public
+                                isAuthenticated={!!logged}
+                            >
+                                <SendConfirmationEmailPage />
+                            </Public>
+                        }
+                    />
+                    <Route
+                        path="/confirmation/:id"
+                        exact
+                        element={
+                            <Public
+                                isAuthenticated={!!logged}
+                            >
+                                <ConfirmationPage />
+                            </Public>
+                        }
+                    />
+                    <Route
+                        path="/"
+                        element={
+                            <Private
+                                isAuthenticated={!!logged}
+                            >
+                                <ChatPage />
+                            </Private>
+                        }
+                    />
+                    <Route
+                        path="*"
+                        element={<Navigate to="/" replace />}
+                    />
+                </Routes>
+            </div>
+        </BrowserRouter>
         // </Suspense>
     )
 }

@@ -7,6 +7,8 @@ import { fetchSinToken } from '../helpers/fetch';
 
 function ConfirmationPage() {
 
+    console.log("aca confirmation");
+
     const { id } = useParams();
 
     const [verificado, setVerificado] = useState({
@@ -14,17 +16,16 @@ function ConfirmationPage() {
         loading: true,
     });
 
+
     useEffect(() => {
-
         const verificar = async () => {
-
             const { ok } = await fetchSinToken(`login/verify/${id}`, "GET");
             ok ? setVerificado({ verified: true, loading: false }) : setVerificado({ verified: false, loading: false })
+
         }
-
         verificar();
-
     }, [id])
+
 
     return (
         <div className="confirmation-container">
