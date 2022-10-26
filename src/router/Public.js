@@ -7,12 +7,10 @@ export const Public = ({
     children,
 }) => {
 
-    if(isAuthenticated) return  <Navigate to="/" replace/>
-
+    if (isAuthenticated) return <Navigate to="/" replace />
     return children
 }
 
 Public.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    // component: PropTypes.func.isRequired,
 };

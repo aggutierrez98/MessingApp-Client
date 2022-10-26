@@ -6,16 +6,12 @@ import { Loader } from '../components/Loader';
 import { fetchSinToken } from '../helpers/fetch';
 
 function ConfirmationPage() {
-
-    console.log("aca confirmation");
-
     const { id } = useParams();
 
     const [verificado, setVerificado] = useState({
         verified: false,
         loading: true,
     });
-
 
     useEffect(() => {
         const verificar = async () => {
@@ -26,11 +22,9 @@ function ConfirmationPage() {
         verificar();
     }, [id])
 
-
     return (
         <div className="confirmation-container">
             <div className="confirmation-box">
-
                 <Loader loading={verificado.loading} />
                 {
                     verificado.verified

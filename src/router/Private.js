@@ -6,11 +6,11 @@ export const Private = ({
     isAuthenticated,
     children
 }) => {
-    if(!isAuthenticated) return   <Navigate to="/login" replace/>
+
+    if (!isAuthenticated) return <Navigate to="/login" replace />
     return children
 }
 
 Private.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    // component: PropTypes.func.isRequired,
 };
