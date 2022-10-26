@@ -73,7 +73,7 @@ export const AppRouter = () => {
                         }
                     />
                     <Route
-                        path="/confirmation/:id"
+                        path="/confirm-email/:id"
                         exact
                         element={
                             <Public
