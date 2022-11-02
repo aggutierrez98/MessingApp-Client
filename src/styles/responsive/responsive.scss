@@ -30,11 +30,9 @@
   .inbox_people {
     width: 100%;
     height: 100%;
-    animation: aparece-izquierda-responsive-inbox ease 0.15s;
   }
 
   .mesgs {
-    animation: aparece-izquierda-responsive-mensajes ease 0.15s;
     width: 100%;
     height: 100%;
   }
@@ -42,85 +40,6 @@
   .perfil {
     width: 100%;
   }
-
-  //   .animaciones-mensajes-enter {
-  //     transform: translateX(100%);
-  //   }
-  //   .animaciones-mensajes-enter-active {
-  //     transform: translateX(0%);
-  //     transition: transform 0.25s backwards;
-  //   }
-  //   .animaciones-mensajes-exit {
-  //     transform: translateX(0%);
-  //   }
-  //   .animaciones-mensajes-exit-active {
-  //     transform: translateX(0%);
-  //     transition: transform 0.25s backwards;
-  //   }
-
-  //   .animaciones-inbox-enter {
-  //     transform: translateX(-100%);
-  //   }
-  //   .animaciones-inbox-enter-active {
-  //     transform: translateX(0%);
-  //     transition: transform 0.25s backwards;
-  //   }
-  //   .animaciones-inbox-exit {
-  //     transform: translateX(0%);
-  //   }
-  //   .animaciones-inbox-exit-active {
-  //     transform: translateX(-100%);
-  //     transition: transform 0.25s backwards;
-  //   }
-
-  //   .animaciones-inbox-aparecer {
-  //     animation: aparece-izquierda-responsive-inbox ease 0.25s;
-  //   }
-  //   .animaciones-inbox-desaparecer {
-  //     animation: desaparece-izquierda-responsive-inbox ease 0.25s;
-  //   }
-  //   .animaciones-mensajes-aparecer {
-  //     animation: aparece-izquierda-responsive-mensajes ease 0.25s;
-  //   }
-  //   .animaciones-mensajes-desaparecer {
-  //     animation: desaparece-izquierda-responsive-mensajes ease 0.25s;
-  //   }
-
-  @keyframes aparece-izquierda-responsive-inbox {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-
-  //   @keyframes desaparece-izquierda-responsive-inbox {
-  //     from {
-  //       transform: translateX(0%);
-  //     }
-  //     to {
-  //       transform: translateX(-100%);
-  //     }
-  //   }
-
-  @keyframes aparece-izquierda-responsive-mensajes {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-
-  //   @keyframes desaparece-izquierda-responsive-mensajes {
-  //     from {
-  //       transform: translateX(0%);
-  //     }
-  //     to {
-  //       transform: translateX(100%);
-  //     }
-  //   }
 
   .overlay {
     background-color: rgba(216, 206, 206, 0.486);

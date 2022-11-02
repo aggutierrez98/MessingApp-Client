@@ -10,7 +10,7 @@ import { SendMessage } from './SendMessage'
 import { SinMensajes } from './SinMensajes'
 import { CSSTransition } from 'react-transition-group';
 
-export const Messages = () => {
+export const Messages = React.forwardRef((props, outRef) => {
 
     const dispatch = useDispatch();
     const { mensajes, chatActivo } = useSelector(state => state.chat)
@@ -21,14 +21,12 @@ export const Messages = () => {
     });
 
     useEffect(() => {
-        if (mensajes) {
-            scrollToBottom("mensajes");
-        }
+        if (mensajes) scrollToBottom("mensajes");
         dispatch(mensajesVistos(chatActivo?.uid))
     }, [mensajes, chatActivo, dispatch]);
 
     return (
-        <div className={`mesgs`}>
+        <div className="mesgs"  ref={outRef}>
             <MessageProfile />
             <div
                 id="mensajes"
@@ -59,4 +57,4 @@ export const Messages = () => {
         </div>
 
     )
-}
+})
