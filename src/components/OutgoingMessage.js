@@ -1,9 +1,9 @@
 import React from 'react'
 import { horaMes } from '../helpers/horaMes'
 
-export const OutgoingMessage = ({ msg }) => {
+export const OutgoingMessage = React.forwardRef(({ msg }, ref) => {
     return (
-        <div className="sent_message-container">
+        <div className="sent_message-container" ref={ref}>
 
             <div className="sent_msg">
                 <p>{msg.mensaje}</p>
@@ -11,4 +11,4 @@ export const OutgoingMessage = ({ msg }) => {
             </div>
         </div>
     )
-}
+})

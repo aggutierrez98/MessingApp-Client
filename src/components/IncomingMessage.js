@@ -1,10 +1,10 @@
 import React from 'react'
 import { horaMes } from '../helpers/horaMes'
 
-export const IncomingMessage = ({ msg }) => {
+export const IncomingMessage = React.forwardRef(({ msg }, ref) => {
 
     return (
-        <div className="incoming_msg-container">
+        <div className="incoming_msg-container" ref={ref}>
             <div className="incoming_msg">
                 <div className="incoming_msg_img">
                     {/* <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg" alt="sunil" /> */}
@@ -18,4 +18,4 @@ export const IncomingMessage = ({ msg }) => {
             </div>
         </div>
     )
-}
+})

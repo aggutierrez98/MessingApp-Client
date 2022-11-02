@@ -12,4 +12,8 @@
   color: var(--text);
   padding: 10px 15px 10px 15px;
   overflow: hidden;
+  p {
+    word-wrap: break-word;
+    white-space: normal;
+  }
 }
