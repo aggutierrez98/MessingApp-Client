@@ -30,6 +30,7 @@ button:hover {
 
 .login-form-container {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   background-color: var(--background);
@@ -37,6 +38,32 @@ button:hover {
   justify-content: center;
   color: var(--blue);
   font-family: $monserrat;
+}
+
+.logo-container {
+  background-color: rgba(255, 255, 255, 0.719);
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    margin-top: 10px;
+    color: var(--text);
+    font-size: 20px;
+  }
+  .logo-title-container {
+    h1 {
+      font-size: 78px;
+    }
+    display: flex;
+    flex-direction: row-reverse;
+    img {
+      margin-right: 10px;
+      width: 100px;
+    }
+  }
 }
 
 .login-form {

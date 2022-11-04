@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { startLogin } from '../actions/auth';
 import * as yup from "yup";
 import { Loader } from '../components/Loader';
+import logoImage from "../assets/Logo.svg";
 
 function LoginPage() {
     const dispatch = useDispatch();
@@ -51,6 +52,15 @@ function LoginPage() {
 
     return (
         <div className="login-form-container">
+
+            <div className='logo-container'>
+                <div className='logo-title-container'>
+                    <h1>MessingApp</h1>
+                    <img alt="messing-app-logo" src={logoImage}></img>
+                </div>
+                <h2>Chat your friends in real time!</h2>
+            </div>
+
             <Formik
                 initialValues={definirInitialValues()}
                 validationSchema={validationSchema}

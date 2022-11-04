@@ -3,7 +3,29 @@
     align-items: flex-start;
   }
 
+  .login-form-container {
+    background-color: var(--background-back);
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-container {
+    margin-bottom: 0px;
+    .logo-title-container {
+      h1 {
+        font-size: 60px;
+      }
+      flex-direction: column;
+      align-items: center;
+      img {
+        order: -1;
+        width: 150px;
+      }
+    }
+  }
+
   .login-form {
+    width: 90%;
     box-shadow: none;
   }
 
@@ -66,5 +88,59 @@
   .confirmacion-eliminar-contacto_boton {
     font-size: 12px;
     padding: 8px 15px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .link-anchor {
+    a {
+      font-size: 15px;
+    }
+  }
+
+  .login-form {
+    &-title {
+      margin-top: 5px;
+      font-size: 22.5px;
+    }
+
+    &-input {
+      height: 60px;
+    }
+
+    &-checkbox {
+      height: 2rem;
+    }
+
+    .input-auth {
+      font-size: 15px;
+      height: 30px;
+    }
+    .error-input {
+      font-size: 15px;
+    }
+    &-button-container-button {
+      height: 50px;
+    }
+
+    &-checkbox {
+      width: 150px;
+    }
+  }
+
+  .input-checkbox {
+    height: 18px !important;
+    width: 18px !important;
+    &:after {
+      height: 15px !important;
+      width: 15px !important;
+    }
+  }
+
+  .logo-container h2 {
+    font-size: 15px;
+  }
+  .logo-title-container h1 {
+    font-size: 40px !important;
   }
 }
