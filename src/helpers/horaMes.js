@@ -1,9 +1,6 @@
-import moment from 'moment';
+import moment from "moment";
 
 export const horaMes = (fecha) => {
-
-    const hoyMes = moment(fecha);
-
-    return hoyMes.format("HH:mm - MM/DD");
-
-}
+	const hoyMes = moment(fecha);
+	return hoyMes.format("HH:mm - MM/DD");
+};
