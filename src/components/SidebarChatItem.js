@@ -13,7 +13,7 @@ export const SidebarChatItem = ({ usuario }) => {
 
 	const onClick = async () => {
 		dispatch(activarChat(usuario));
-		dispatch(cargarMensajes(mensajesTotales, usuario.uid));
+		dispatch(cargarMensajes({ mensajesTotales, id: usuario.uid }));
 	};
 
 	return (

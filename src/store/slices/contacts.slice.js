@@ -124,16 +124,13 @@ export const eliminarNotificacionAsync = createAsyncThunk(
 export const contactsSlice = createSlice({
 	name: "contacts",
 	initialState: {
-		contactos: [], // Toodos los usuarios de la base de datos
+		contactos: [],
 		usuariosRestantes: [],
 		notificaciones: [],
 	},
 	reducers: {
 		cargarNotificaciones: (state, { payload, type }) => {
-			return {
-				...state,
-				notificaciones: payload,
-			};
+			state.notificaciones = payload;
 		},
 		cargarContactos: (state, { payload, type }) => {
 			const contactos = payload.map((contacto) => {
@@ -141,89 +138,37 @@ export const contactsSlice = createSlice({
 				contactoRetornado.uid = contacto._id;
 				return contactoRetornado;
 			});
-
-			return {
-				...state,
-				contactos,
-			};
+			state.contactos = contactos;
 		},
 		contactoConectado: (state, { payload, type }) => {
-			const index = state.contactos.findIndex(({ uid }) => uid === payload);
-
-			console.log({ state, payload, index });
-			// console.log(state.contactos);
-			if (index !== -1) state.contactos[index].online = true;
-
-			// state.contactos = state.contactos.map((contacto) => {
-			// 	if (contacto.uid === payload) {
-			// 		contacto.online = true;
-			// 	}
-			// 	return contacto;
-			// });
-
-			// return {
-			// 	...state,
-			// 	contactos: state.contactos.map((contacto) => {
-			// 		if (contacto.uid === payload) {
-			// 			contacto.online = true;
-			// 		}
-
-			// 		return contacto;
-			// 	}),
-			// };
+			const contacto = state.contactos.find(({ uid }) => uid === payload);
+			if (contacto) contacto.online = true;
 		},
 		contactoDesconectado: (state, { payload, type }) => {
-			return {
-				...state,
-				contactos: state.contacts.map((contacto) => {
-					if (contacto.uid === payload) {
-						contacto.online = false;
-					}
-
-					return contacto;
-				}),
-			};
+			const contacto = state.contactos.find(({ uid }) => uid === payload);
+			if (contacto) contacto.online = false;
 		},
 		cargarUsuariosRestantes: (state, { payload, type }) => {
-			return {
-				...state,
-				usuariosRestantes: payload,
-			};
+			state.usuariosRestantes = payload;
 		},
 		agregarContacto: (state, { payload, type }) => {
-			return {
-				...state,
-				contactos: [...state.contacts, payload],
-			};
+			state.contactos.push(payload);
 		},
 		eliminarContacto: (state, { payload, type }) => {
-			return {
-				...state,
-				contactos: state.contacts.filter(
-					(contacto) => contacto.uid !== payload,
-				),
-			};
+			state.contactos.filter((contacto) => contacto.uid !== payload);
 		},
 		nuevaNotificacion: (state, { payload, type }) => {
-			return {
-				...state,
-				notificaciones: [payload, ...state.notificaciones],
-			};
+			state.notificaciones.push(payload);
 		},
 		eliminarNotificacion: (state, { payload, type }) => {
-			return {
-				...state,
-				notificaciones: state.notificaciones.filter(
-					(notificacion) => notificacion._id !== payload,
-				),
-			};
+			state.notificaciones.filter(
+				(notificacion) => notificacion._id !== payload,
+			);
 		},
-		limpiarContactos: (state, { payload, type }) => {
-			return {
-				contactos: [],
-				usuariosRestantes: [],
-				notificaciones: [],
-			};
+		limpiarContactos: (state) => {
+			state.contactos = [];
+			state.usuariosRestantes = [];
+			state.notificaciones = [];
 		},
 	},
 });

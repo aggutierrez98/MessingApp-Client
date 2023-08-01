@@ -22,7 +22,6 @@ function SendConfirmationEmailPage() {
 			{ email: location.state.user.email },
 			"POST",
 		);
-		console.log(ok);
 		ok
 			? setenviado({ send: true, loading: false })
 			: setenviado({ send: false, loading: false });

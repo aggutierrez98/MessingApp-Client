@@ -68,52 +68,33 @@ export const userSlice = createSlice({
 		uid: null,
 		name: null,
 		email: null,
-		description: "",
+		descripcion: "",
 		imagen: null,
 	},
 	reducers: {
 		cargarDatos: (state, { payload }) => {
-			const usuario = payload;
-
-			return {
-				uid: usuario.uid,
-				name: usuario.nombre,
-				email: usuario.email,
-				descripcion: usuario.descripcion,
-				imagen: usuario.imagen,
-			};
+			const { uid, nombre, email, descripcion, imagen } = payload;
+			state.uid = uid;
+			state.name = nombre;
+			state.email = email;
+			state.descripcion = descripcion;
+			state.imagen = imagen;
 		},
 		descargarDatos: (state, { payload }) => {
-			return {
-				uid: null,
-				name: null,
-				email: null,
-				description: null,
-				imagen: null,
-			};
+			state.uid = null;
+			state.name = null;
+			state.email = null;
+			state.descripcion = null;
+			state.imagen = null;
 		},
 		editarNombre: (state, { payload }) => {
-			const usuario = payload;
-
-			return {
-				uid: usuario.uid,
-				name: usuario.nombre,
-				email: usuario.email,
-				descripcion: usuario.descripcion,
-				imagen: usuario.imagen,
-			};
+			state.name = payload;
 		},
 		editarDescripcion: (state, { payload }) => {
-			return {
-				...state,
-				descripcion: payload,
-			};
+			state.descripcion = payload;
 		},
 		editarImagen: (state, { payload }) => {
-			return {
-				...state,
-				imagen: payload,
-			};
+			state.imagen = payload;
 		},
 	},
 });

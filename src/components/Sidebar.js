@@ -11,11 +11,12 @@ export const Sidebar = () => {
 		const newContactos = [];
 
 		for (const contacto of contactos) {
+			const ultimoMensaje =
+				ultimosMensajes.find((ultimo) => ultimo.contacto === contacto.uid) ||
+				{};
 			newContactos.push({
 				...contacto,
-				ultimoMensaje: ultimosMensajes.find(
-					(ultimo) => ultimo.contacto === contacto.uid,
-				),
+				ultimoMensaje,
 			});
 		}
 

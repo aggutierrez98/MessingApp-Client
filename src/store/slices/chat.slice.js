@@ -5,113 +5,90 @@ export const chatSlice = createSlice({
 	initialState: {
 		loaded: false,
 		mensajesTotales: [],
-		ultimosMensajes: [], //Ultimo mensaje con cada usuario
-		chatActivo: {}, //UID del usuario al que yo quiero enviar mensajes
-		mensajes: [], // El chat seleccionado
+		ultimosMensajes: [],
+		chatActivo: {},
+		mensajes: [],
 	},
 	reducers: {
 		activarChat: (state, action) => {
-			if (state.chatActivo === action.payload) return state;
-
-			return {
-				...state,
-				chatActivo: action.payload,
-				mensajes: [],
-			};
+			state.chatActivo = action.payload;
+			state.mensajes = [];
 		},
 		nuevoMensajeUsuario: (state, action) => {
-			state.mensajesTotales.mensajesPorContacto.forEach((object) => {
-				if (object.contacto === action.payload.para) {
-					object.mensajesContacto.push(action.payload);
-					object.ultimoMensaje = {
-						mensaje: action.payload.mensaje,
-						fecha: action.payload.createdAt,
-						contacto: action.payload.para,
-					};
-				}
-			});
-
-			return {
-				...state,
-			};
+			const mensajesAEditar = state.mensajesTotales.mensajesPorContacto.find(
+				({ contacto }) => contacto === action.payload.para,
+			);
+			if (mensajesAEditar) {
+				mensajesAEditar.mensajesContacto.push(action.payload);
+				mensajesAEditar.ultimoMensaje = {
+					mensaje: action.payload.mensaje,
+					fecha: action.payload.createdAt,
+					contacto: action.payload.para,
+				};
+				state.mensajes.push(action.payload);
+			}
 		},
 		nuevoMensajeContacto: (state, action) => {
-			state.mensajesTotales.mensajesPorContacto.forEach((object) => {
-				if (object.contacto === action.payload.de) {
-					if (!object.ultimoMensaje.nuevosMensajes) {
-						object.ultimoMensaje.nuevosMensajes = 0;
-					}
-
-					object.mensajesContacto.push(action.payload);
-
-					object.ultimoMensaje = {
-						mensaje: action.payload.mensaje,
-						fecha: action.payload.createdAt,
-						contacto: action.payload.de,
-						nuevosMensajes: object.ultimoMensaje.nuevosMensajes,
-					};
-
-					if (action.payload.de !== state.chatActivo.uid) {
-						object.ultimoMensaje.nuevosMensajes =
-							object.ultimoMensaje.nuevosMensajes + 1;
-					}
+			const mensajesAEditar = state.mensajesTotales.mensajesPorContacto.find(
+				({ contacto }) => contacto === action.payload.de,
+			);
+			if (mensajesAEditar) {
+				if (!mensajesAEditar.ultimoMensaje.nuevosMensajes) {
+					mensajesAEditar.ultimoMensaje.nuevosMensajes = 0;
 				}
-			});
+				mensajesAEditar.mensajesContacto.push(action.payload);
 
-			return {
-				...state,
-			};
+				mensajesAEditar.ultimoMensaje = {
+					mensaje: action.payload.mensaje,
+					fecha: action.payload.createdAt,
+					contacto: action.payload.de,
+					nuevosMensajes: mensajesAEditar.ultimoMensaje.nuevosMensajes,
+				};
+
+				if (action.payload.de !== state.chatActivo.uid) {
+					mensajesAEditar.ultimoMensaje.nuevosMensajes =
+						mensajesAEditar.ultimoMensaje.nuevosMensajes + 1;
+				}
+
+				state.mensajes.push(action.payload);
+			}
 		},
 		mensajesVistos: (state, action) => {
-			state.mensajesTotales.mensajesPorContacto.forEach((object) => {
-				if (object.contacto === action.payload) {
-					object.ultimoMensaje.nuevosMensajes = 0;
-				}
-			});
-
-			return {
-				...state,
-			};
+			const mensajesAEditar = state.mensajesTotales.mensajesPorContacto.find(
+				({ contacto }) => contacto === action.payload.de,
+			);
+			if (mensajesAEditar) {
+				mensajesAEditar.ultimoMensaje.nuevosMensajes = 0;
+			}
 		},
 		cargarMensajes: (state, action) => {
-			return {
-				...state,
-				mensajes: state.mensajesTotales.mensajesPorContacto.find(
-					(mensajesPorContacto) =>
-						mensajesPorContacto.contacto === action.payload.id,
-				).mensajesContacto,
-			};
+			const mensajesFinal = state.mensajesTotales.mensajesPorContacto.find(
+				(mensajesPorContacto) =>
+					mensajesPorContacto.contacto === action.payload.id,
+			)?.mensajesContacto;
+
+			state.mensajes = mensajesFinal;
 		},
 		limpiarMensajes: (state, action) => {
-			return {
-				...state,
-				chatActivo: null,
-				mensajes: [],
-			};
+			state.chatActivo = null;
+			state.mensajes = [];
 		},
 		cargarUltimosMensajes: (state, action) => {
-			return {
-				...state,
-				ultimosMensajes: state.mensajesTotales.mensajesPorContacto.map(
-					(mensajesPorContacto) => mensajesPorContacto.ultimoMensaje,
-				),
-				loaded: true,
-			};
+			state.loaded = true;
+			const mensajesFinal = state.mensajesTotales.mensajesPorContacto.map(
+				(mensajesPorContacto) => mensajesPorContacto.ultimoMensaje,
+			);
+			state.ultimosMensajes = mensajesFinal;
 		},
 		cargarMensajesTotales: (state, action) => {
-			return {
-				...state,
-				mensajesTotales: action.payload,
-			};
+			state.mensajesTotales = action.payload;
 		},
 		descargarChats: (state, action) => {
-			return {
-				loaded: false,
-				mensajesTotales: [],
-				ultimosMensajes: [],
-				chatActivo: {},
-				mensajes: [],
-			};
+			state.chatActivo = false;
+			state.loaded = [];
+			state.mensajes = [];
+			state.mensajesTotales = {};
+			state.ultimosMensajes = [];
 		},
 	},
 });
