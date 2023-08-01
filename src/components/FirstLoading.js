@@ -1,15 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export const FirstLoading = ({ loading }) => {
-
-    return (
-        <>
-            {
-                loading &&
-                <div className="first-loading">
-
-                </div>
-            }
-        </>
-    )
-}
+	return <>{loading && <div className="first-loading" />}</>;
+};

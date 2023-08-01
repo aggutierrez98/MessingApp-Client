@@ -1,52 +1,57 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { editarNombre } from '../actions/usuario';
-import TextareaAutosize from 'react-textarea-autosize';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import TextareaAutosize from "react-textarea-autosize";
+import { editarNombreAsync } from "../store/slices/user.slice";
 
 export const EditarNombre = ({ nombre, uid }) => {
+	const dispatch = useDispatch();
 
-    // autosize(document.getElementById("note"));
+	const [editandoNombre, setEditandoNombre] = useState(false);
+	const [nombreUser, setNombreUser] = useState(nombre);
 
-    const dispatch = useDispatch();
+	const onChangeNombre = ({ target }) => {
+		setNombreUser(target.value);
+	};
 
-    const [editandoNombre, setEditandoNombre] = useState(false);
-    const [nombreUser, setNombreUser] = useState(nombre);
+	const empezarEdicionNombre = () => {
+		setEditandoNombre(!editandoNombre);
+	};
 
-    const onChangeNombre = ({ target }) => {
-        setNombreUser(
-            target.value
-        )
-    }
+	const terminarEdicionNombre = (e) => {
+		e.preventDefault();
+		setEditandoNombre(!editandoNombre);
+		dispatch(editarNombreAsync({ nombre: nombreUser, uid }));
+	};
 
-    const empezarEdicionNombre = () => {
-        setEditandoNombre(!editandoNombre)
-    }
-
-    const terminarEdicionNombre = (e) => {
-        e.preventDefault()
-        setEditandoNombre(!editandoNombre)
-        dispatch(editarNombre(nombreUser, uid));
-    }
-
-    return (
-        <div className="perfil_contenedor-info">
-            <p className="perfil_contenedor-info_titulo" >Tu nombre</p>
-            <div className="perfil_info_contenedor">
-                {
-                    editandoNombre
-                        ?
-                        <form className="perfil_contenedor-info_formulario" onSubmit={terminarEdicionNombre}>
-                            <TextareaAutosize type="text" className=" info-input" value={nombreUser} onChange={onChangeNombre}></TextareaAutosize>
-                        </form>
-
-                        : <p className="perfil_contenedor-info_texto">{nombreUser}</p>
-                }
-                {
-                    editandoNombre
-                        ? <button onClick={terminarEdicionNombre}><ion-icon name="checkmark"></ion-icon></button>
-                        : <button onClick={empezarEdicionNombre}><ion-icon name="pencil"></ion-icon> </button>
-                }
-            </div>
-        </div>
-    )
-}
+	return (
+		<div className="perfil_contenedor-info">
+			<p className="perfil_contenedor-info_titulo">Tu nombre</p>
+			<div className="perfil_info_contenedor">
+				{editandoNombre ? (
+					<form
+						className="perfil_contenedor-info_formulario"
+						onSubmit={terminarEdicionNombre}
+					>
+						<TextareaAutosize
+							type="text"
+							className=" info-input"
+							value={nombreUser}
+							onChange={onChangeNombre}
+						/>
+					</form>
+				) : (
+					<p className="perfil_contenedor-info_texto">{nombreUser}</p>
+				)}
+				{editandoNombre ? (
+					<button type="button" onClick={terminarEdicionNombre}>
+						<ion-icon name="checkmark" />
+					</button>
+				) : (
+					<button type="button" onClick={empezarEdicionNombre}>
+						<ion-icon name="pencil" />{" "}
+					</button>
+				)}
+			</div>
+		</div>
+	);
+};

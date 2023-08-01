@@ -1,16 +1,12 @@
-import React from 'react'
 import PropTypes from "prop-types";
-import { Navigate } from 'react-router-dom'
+import React from "react";
+import { Navigate } from "react-router-dom";
 
-export const Private = ({
-    isAuthenticated,
-    children
-}) => {
-
-    if (!isAuthenticated) return <Navigate to="/login" replace />
-    return children
-}
+export const Private = ({ isAuthenticated, children }) => {
+	if (!isAuthenticated) return <Navigate to="/login" replace />;
+	return children;
+};
 
 Private.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
+	isAuthenticated: PropTypes.bool.isRequired,
 };

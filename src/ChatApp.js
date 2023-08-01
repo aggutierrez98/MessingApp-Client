@@ -1,6 +1,6 @@
 import React from "react";
-import { SocketProvider } from "./context/SocketContext";
 import { Provider } from "react-redux";
+import { SocketProvider } from "./context/SocketContext";
 import { AppRouter } from "./router/AppRouter";
 import { store } from "./store/store";
 

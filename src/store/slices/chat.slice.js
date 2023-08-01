@@ -1,16 +1,16 @@
-import { types } from "../types/types";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-	loaded: false,
-	mensajesTotales: [],
-	ultimosMensajes: [], //Ultimo mensaje con cada usuario
-	chatActivo: {}, //UID del usuario al que yo quiero enviar mensajes
-	mensajes: [], // El chat seleccionado
-};
-
-export const chatReducer = (state = initialState, action) => {
-	switch (action.type) {
-		case types.activarChat:
+export const chatSlice = createSlice({
+	name: "chat",
+	initialState: {
+		loaded: false,
+		mensajesTotales: [],
+		ultimosMensajes: [], //Ultimo mensaje con cada usuario
+		chatActivo: {}, //UID del usuario al que yo quiero enviar mensajes
+		mensajes: [], // El chat seleccionado
+	},
+	reducers: {
+		activarChat: (state, action) => {
 			if (state.chatActivo === action.payload) return state;
 
 			return {
@@ -18,8 +18,8 @@ export const chatReducer = (state = initialState, action) => {
 				chatActivo: action.payload,
 				mensajes: [],
 			};
-
-		case types.nuevoMensajeUsuario:
+		},
+		nuevoMensajeUsuario: (state, action) => {
 			state.mensajesTotales.mensajesPorContacto.forEach((object) => {
 				if (object.contacto === action.payload.para) {
 					object.mensajesContacto.push(action.payload);
@@ -34,8 +34,8 @@ export const chatReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
-
-		case types.nuevoMensajeContacto:
+		},
+		nuevoMensajeContacto: (state, action) => {
 			state.mensajesTotales.mensajesPorContacto.forEach((object) => {
 				if (object.contacto === action.payload.de) {
 					if (!object.ultimoMensaje.nuevosMensajes) {
@@ -61,8 +61,8 @@ export const chatReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
-
-		case types.mensajesVistos:
+		},
+		mensajesVistos: (state, action) => {
 			state.mensajesTotales.mensajesPorContacto.forEach((object) => {
 				if (object.contacto === action.payload) {
 					object.ultimoMensaje.nuevosMensajes = 0;
@@ -72,8 +72,8 @@ export const chatReducer = (state = initialState, action) => {
 			return {
 				...state,
 			};
-
-		case types.cargarMensajes:
+		},
+		cargarMensajes: (state, action) => {
 			return {
 				...state,
 				mensajes: state.mensajesTotales.mensajesPorContacto.find(
@@ -81,15 +81,15 @@ export const chatReducer = (state = initialState, action) => {
 						mensajesPorContacto.contacto === action.payload.id,
 				).mensajesContacto,
 			};
-
-		case types.limpiarMensajes:
+		},
+		limpiarMensajes: (state, action) => {
 			return {
 				...state,
 				chatActivo: null,
 				mensajes: [],
 			};
-
-		case types.cargarUltimosMensajes:
+		},
+		cargarUltimosMensajes: (state, action) => {
 			return {
 				...state,
 				ultimosMensajes: state.mensajesTotales.mensajesPorContacto.map(
@@ -97,14 +97,14 @@ export const chatReducer = (state = initialState, action) => {
 				),
 				loaded: true,
 			};
-
-		case types.cargarMensajesTotales:
+		},
+		cargarMensajesTotales: (state, action) => {
 			return {
 				...state,
 				mensajesTotales: action.payload,
 			};
-
-		case types.descargarChats:
+		},
+		descargarChats: (state, action) => {
 			return {
 				loaded: false,
 				mensajesTotales: [],
@@ -112,8 +112,19 @@ export const chatReducer = (state = initialState, action) => {
 				chatActivo: {},
 				mensajes: [],
 			};
+		},
+	},
+});
 
-		default:
-			return state;
-	}
-};
+export const chatReducer = chatSlice.reducer;
+export const {
+	activarChat,
+	nuevoMensajeUsuario,
+	nuevoMensajeContacto,
+	mensajesVistos,
+	cargarMensajes,
+	limpiarMensajes,
+	cargarUltimosMensajes,
+	cargarMensajesTotales,
+	descargarChats,
+} = chatSlice.actions;

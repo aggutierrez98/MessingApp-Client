@@ -1,105 +1,97 @@
 import { types } from "../types/types";
 
 const initialState = {
-    contactos: [], // Toodos los usuarios de la base de datos
-    usuariosRestantes: [],
-    notificaciones: [],
-}
-
+	contactos: [], // Toodos los usuarios de la base de datos
+	usuariosRestantes: [],
+	notificaciones: [],
+};
 
 export const contactosReducer = (state = initialState, { payload, type }) => {
+	switch (type) {
+		case types.cargarNotificaciones:
+			return {
+				...state,
+				notificaciones: payload,
+			};
 
-    switch (type) {
+		case types.cargarContactos:
+			const contactos = payload.map((contacto) => {
+				const { _id, ...contactoRetornado } = contacto;
+				contactoRetornado.uid = contacto._id;
+				return contactoRetornado;
+			});
 
-        case types.cargarNotificaciones:
-            return {
-                ...state,
-                notificaciones: payload
-            }
+			return {
+				...state,
+				contactos,
+			};
 
-        case types.cargarContactos:
+		case types.contactoConectado:
+			return {
+				...state,
+				contactos: state.contactos.map((contacto) => {
+					if (contacto.uid === payload) {
+						contacto.online = true;
+					}
 
-            const contactos = payload.map((contacto) => {
-                const { _id, ...contactoRetornado } = contacto
-                contactoRetornado.uid = contacto._id;
-                return contactoRetornado;
-            })
+					return contacto;
+				}),
+			};
 
-            return {
-                ...state,
-                contactos
-            }
+		case types.contactoDesconectado:
+			return {
+				...state,
+				contactos: state.contactos.map((contacto) => {
+					if (contacto.uid === payload) {
+						contacto.online = false;
+					}
 
-        case types.contactoConectado:
+					return contacto;
+				}),
+			};
 
-            return {
-                ...state,
-                contactos: state.contactos.map(contacto => {
-                    if (contacto.uid === payload) {
-                        contacto.online = true
-                    }
+		case types.cargarUsuariosRestantes:
+			return {
+				...state,
+				usuariosRestantes: payload,
+			};
 
-                    return contacto
-                })
-            }
+		case types.agregarContacto:
+			return {
+				...state,
+				contactos: [...state.contactos, payload],
+			};
 
-        case types.contactoDesconectado:
+		case types.eliminarContacto:
+			return {
+				...state,
+				contactos: state.contactos.filter(
+					(contacto) => contacto.uid !== payload,
+				),
+			};
 
-            return {
-                ...state,
-                contactos: state.contactos.map(contacto => {
-                    if (contacto.uid === payload) {
-                        contacto.online = false
-                    }
+		case types.nuevaNotificacion:
+			return {
+				...state,
+				notificaciones: [payload, ...state.notificaciones],
+			};
 
-                    return contacto
-                })
-            }
+		case types.eliminarNotificacion:
+			return {
+				...state,
+				notificaciones: state.notificaciones.filter(
+					(notificacion) => notificacion._id !== payload,
+				),
+			};
 
-        case types.cargarUsuariosRestantes:
-            return {
-                ...state,
-                usuariosRestantes: payload,
-            }
+		case types.limpiarContactos:
+			return {
+				contactos: [],
+				usuariosRestantes: [],
+				notificaciones: [],
+			};
 
-        case types.agregarContacto:
-
-
-            return {
-                ...state,
-                contactos: [...state.contactos, payload]
-            }
-
-        case types.eliminarContacto:
-
-            return {
-                ...state,
-                contactos: state.contactos.filter(contacto => contacto.uid !== payload)
-            }
-
-        case types.nuevaNotificacion:
-
-            return {
-                ...state,
-                notificaciones: [payload, ...state.notificaciones]
-            }
-
-        case types.eliminarNotificacion:
-
-            return {
-                ...state,
-                notificaciones: state.notificaciones.filter((notificacion) => notificacion._id !== payload)
-            }
-
-        case types.limpiarContactos:
-            return {
-                contactos: [],
-                usuariosRestantes: [],
-                notificaciones: [],
-            }
-
-        default:
-            return state;
-
-    }
-}
+		default:
+			return state;
+	}
+};
