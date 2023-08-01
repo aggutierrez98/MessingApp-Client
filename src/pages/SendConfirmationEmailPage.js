@@ -19,7 +19,7 @@ function SendConfirmationEmailPage() {
 
 		const { ok } = await fetchSinToken(
 			"login/re-send-verify",
-			{ email: location.state.usuario.email },
+			{ email: location.state.user.email },
 			"POST",
 		);
 		console.log(ok);

@@ -3,25 +3,29 @@ import { useSelector } from "react-redux";
 import { SidebarChatItem } from "./SidebarChatItem";
 
 export const Sidebar = () => {
-	const { contactos } = useSelector((state) => state.contactos);
+	const { contactos } = useSelector((state) => state.contacts);
 	const { ultimosMensajes } = useSelector((state) => state.chat);
 	const [contactosMostrados, setContactosMostrados] = useState([]);
 
 	useEffect(() => {
-		const contactosConMensaje = contactos
-			.map((contacto) => {
-				contacto.ultimoMensaje = ultimosMensajes.find(
+		const newContactos = [];
+
+		for (const contacto of contactos) {
+			newContactos.push({
+				...contacto,
+				ultimoMensaje: ultimosMensajes.find(
 					(ultimo) => ultimo.contacto === contacto.uid,
-				);
-				return contacto;
-			})
-			.sort(
+				),
+			});
+		}
+
+		setContactosMostrados(
+			newContactos.sort(
 				(a, b) =>
 					new Date(b.ultimoMensaje.fecha).getTime() -
 					new Date(a.ultimoMensaje.fecha).getTime(),
-			);
-
-		setContactosMostrados(contactosConMensaje);
+			),
+		);
 	}, [contactos, ultimosMensajes]);
 
 	return (

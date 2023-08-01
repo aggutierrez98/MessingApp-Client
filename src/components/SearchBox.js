@@ -4,7 +4,7 @@ import defaultImage from "../assets/default-user-image.jpg";
 import { Selectores } from "./Selectores";
 
 export const SearchBox = () => {
-	const { name, imagen } = useSelector((state) => state.usuario);
+	const { name, imagen } = useSelector((state) => state.user);
 
 	return (
 		<>

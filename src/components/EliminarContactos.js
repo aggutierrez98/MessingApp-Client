@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { UsuarioCard } from "./UsuarioCard";
 
 export const EliminarContactos = () => {
-	const { contactos } = useSelector((state) => state.contactos);
+	const { contactos } = useSelector((state) => state.contacts);
 
 	return (
 		<>

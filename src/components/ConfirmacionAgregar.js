@@ -7,7 +7,7 @@ import { nuevaNotificacionAsync } from "../store/slices/contacts.slice";
 
 export const ConfirmacionAgregar = ({ closeModal, usuario }) => {
 	const { socket } = useContext(SocketContext);
-	const { uid } = useSelector((state) => state.usuario);
+	const { uid } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
 	const agregar = () => {

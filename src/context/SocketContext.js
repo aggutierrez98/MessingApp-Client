@@ -1,21 +1,22 @@
 import React, { createContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+
+import { scrollToBottomAnimated } from "../helpers/scrollToBottom";
+import { useSocket } from "../hooks/useSocket";
 import {
 	cargarMensajesTotales,
 	cargarUltimosMensajes,
 	nuevoMensajeContacto,
 	nuevoMensajeUsuario,
-} from "../actions/chat";
+} from "../store/slices/chat.slice";
 import {
-	agregarContactoSincronico,
+	agregarContacto,
 	contactoConectado,
 	contactoDesconectado,
-	eliminarContactoSincronico,
-	nuevaNotificacionSincrono,
-} from "../actions/contactos";
-import { scrollToBottomAnimated } from "../helpers/scrollToBottom";
-import { useSocket } from "../hooks/useSocket";
+	eliminarContacto,
+	nuevaNotificacion,
+} from "../store/slices/contacts.slice";
 
 export const SocketContext = createContext();
 
@@ -65,12 +66,12 @@ export const SocketProvider = ({ children }) => {
 		});
 
 		socket?.on("envio-solicitud", (notificacion) => {
-			dispatch(nuevaNotificacionSincrono(notificacion));
+			dispatch(nuevaNotificacion(notificacion));
 			toast.info("Nueva solicitud de contacto", { containerId: "A" });
 		});
 
 		socket?.on("solicitud-aceptada", (contacto) => {
-			dispatch(agregarContactoSincronico(contacto));
+			dispatch(agregarContacto(contacto));
 			toast.success(`Contacto ${contacto.nombre} agregado`, {
 				containerId: "A",
 			});
@@ -83,7 +84,7 @@ export const SocketProvider = ({ children }) => {
 		});
 
 		socket?.on("contacto-eliminado", ({ nombre, uid }) => {
-			dispatch(eliminarContactoSincronico(uid));
+			dispatch(eliminarContacto(uid));
 			toast.error(`El contacto ${nombre} te ha eliminado`, {
 				containerId: "A",
 			});

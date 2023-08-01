@@ -12,7 +12,7 @@ export const NotificacionCard = ({ time, de, _id }) => {
 
 	const { nombre, email } = de;
 	const { socket } = useContext(SocketContext);
-	const { uid } = useSelector((state) => state.usuario);
+	const { uid } = useSelector((state) => state.user);
 
 	const [modalIsOpen, setIsOpen] = useState(false);
 

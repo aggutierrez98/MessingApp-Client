@@ -1,8 +1,8 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { verificaToken } from "../actions/auth";
 import { Loader } from "../components/Loader";
+import { verificaTokenAsync } from "../store/slices/auth.slice";
 import { Private } from "./Private";
 import { Public } from "./Public";
 
@@ -33,7 +33,7 @@ export const AppRouter = () => {
 	const { checking, logged } = useSelector((state) => state.auth);
 
 	useEffect(() => {
-		dispatch(verificaToken());
+		dispatch(verificaTokenAsync());
 	}, [dispatch]);
 
 	if (checking) return <Loader loading={true} />;

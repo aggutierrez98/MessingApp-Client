@@ -7,7 +7,7 @@ export const SendMessage = () => {
 	const [mensaje, setMensaje] = useState("");
 	const [seleccionarEmoji, setSeleccionarEmoji] = useState(false);
 	const { socket } = useContext(SocketContext);
-	const { uid } = useSelector((state) => state.usuario);
+	const { uid } = useSelector((state) => state.user);
 	const { chatActivo } = useSelector((state) => state.chat);
 
 	const onChange = ({ target }) => {

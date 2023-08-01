@@ -7,7 +7,7 @@ import { agregarContactoAsync } from "../store/slices/contacts.slice";
 export const ConfirmacionAceptar = ({ closeModal, de, idNotificacion }) => {
 	const dispatch = useDispatch();
 	const { socket } = useContext(SocketContext);
-	const { uid } = useSelector((state) => state.usuario);
+	const { uid } = useSelector((state) => state.user);
 
 	const aceptar = () => {
 		closeModal();

@@ -12,7 +12,7 @@ export const AgregarContacto = () => {
 		inputRef.current.focus();
 	}, []);
 
-	const { usuariosRestantes } = useSelector((state) => state.contactos);
+	const { usuariosRestantes } = useSelector((state) => state.contacts);
 
 	const [email, setEmail] = useState("");
 

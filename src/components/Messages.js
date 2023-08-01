@@ -16,7 +16,7 @@ import { SinMensajes } from "./SinMensajes";
 export const Messages = React.forwardRef((props, outRef) => {
 	const dispatch = useDispatch();
 	const { mensajes, chatActivo } = useSelector((state) => state.chat);
-	const { uid } = useSelector((state) => state.usuario);
+	const { uid } = useSelector((state) => state.user);
 	const nodeRef = useRef(null);
 	const { ref, inView } = useInView({
 		threshold: 0.75,

@@ -29,7 +29,7 @@ export const contactosReducer = (state = initialState, { payload, type }) => {
 		case types.contactoConectado:
 			return {
 				...state,
-				contactos: state.contactos.map((contacto) => {
+				contactos: state.contacts.map((contacto) => {
 					if (contacto.uid === payload) {
 						contacto.online = true;
 					}
@@ -41,7 +41,7 @@ export const contactosReducer = (state = initialState, { payload, type }) => {
 		case types.contactoDesconectado:
 			return {
 				...state,
-				contactos: state.contactos.map((contacto) => {
+				contactos: state.contacts.map((contacto) => {
 					if (contacto.uid === payload) {
 						contacto.online = false;
 					}
@@ -59,13 +59,13 @@ export const contactosReducer = (state = initialState, { payload, type }) => {
 		case types.agregarContacto:
 			return {
 				...state,
-				contactos: [...state.contactos, payload],
+				contactos: [...state.contacts, payload],
 			};
 
 		case types.eliminarContacto:
 			return {
 				...state,
-				contactos: state.contactos.filter(
+				contactos: state.contacts.filter(
 					(contacto) => contacto.uid !== payload,
 				),
 			};

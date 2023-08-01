@@ -5,7 +5,7 @@ import { EditarNombre } from "./EditarNombre";
 
 export const PerfilUsuario = () => {
 	const { email, name, descripcion, uid, imagen } = useSelector(
-		(state) => state.usuario,
+		(state) => state.user,
 	);
 
 	return (

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import { fetchConToken } from "../../helpers/fetch";
 
 export const agregarContactoAsync = createAsyncThunk(
 	"contacts/add",
@@ -113,7 +114,7 @@ export const eliminarNotificacionAsync = createAsyncThunk(
 		);
 
 		if (ok) {
-			dispatch(eliminarNotificacionSincrono(id));
+			thunkApi.dispatch(eliminarNotificacion(id));
 		} else {
 			throw new Error("Error al eliminar notificacion");
 		}
@@ -147,21 +148,34 @@ export const contactsSlice = createSlice({
 			};
 		},
 		contactoConectado: (state, { payload, type }) => {
-			return {
-				...state,
-				contactos: state.contactos.map((contacto) => {
-					if (contacto.uid === payload) {
-						contacto.online = true;
-					}
+			const index = state.contactos.findIndex(({ uid }) => uid === payload);
 
-					return contacto;
-				}),
-			};
+			console.log({ state, payload, index });
+			// console.log(state.contactos);
+			if (index !== -1) state.contactos[index].online = true;
+
+			// state.contactos = state.contactos.map((contacto) => {
+			// 	if (contacto.uid === payload) {
+			// 		contacto.online = true;
+			// 	}
+			// 	return contacto;
+			// });
+
+			// return {
+			// 	...state,
+			// 	contactos: state.contactos.map((contacto) => {
+			// 		if (contacto.uid === payload) {
+			// 			contacto.online = true;
+			// 		}
+
+			// 		return contacto;
+			// 	}),
+			// };
 		},
 		contactoDesconectado: (state, { payload, type }) => {
 			return {
 				...state,
-				contactos: state.contactos.map((contacto) => {
+				contactos: state.contacts.map((contacto) => {
 					if (contacto.uid === payload) {
 						contacto.online = false;
 					}
@@ -179,13 +193,13 @@ export const contactsSlice = createSlice({
 		agregarContacto: (state, { payload, type }) => {
 			return {
 				...state,
-				contactos: [...state.contactos, payload],
+				contactos: [...state.contacts, payload],
 			};
 		},
 		eliminarContacto: (state, { payload, type }) => {
 			return {
 				...state,
-				contactos: state.contactos.filter(
+				contactos: state.contacts.filter(
 					(contacto) => contacto.uid !== payload,
 				),
 			};

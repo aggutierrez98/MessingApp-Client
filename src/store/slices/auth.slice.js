@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { fetchConToken, fetchSinToken } from "../../helpers/fetch";
 import { descargarChats, limpiarMensajes } from "./chat.slice";
 import {
 	cargarContactos,
@@ -26,7 +27,7 @@ export const loginAsync = createAsyncThunk(
 		if (resp.ok) {
 			localStorage.setItem("token", resp.token);
 			const { usuario } = resp;
-			thunkApi.dispatch(loginUsuario());
+			thunkApi.dispatch(login());
 			thunkApi.dispatch(cargarDatos(usuario));
 			thunkApi.dispatch(cargarContactos(usuario.contactos));
 			thunkApi.dispatch(cargarNotificaciones(usuario.notificaciones));
@@ -39,16 +40,12 @@ export const loginAsync = createAsyncThunk(
 export const logoutAsync = createAsyncThunk(
 	"auth/logout",
 	async (_, thunkApi) => {
-		if (resp.ok) {
-			localStorage.removeItem("token");
-			thunkApi.dispatch(logout());
-			thunkApi.dispatch(descargarDatos());
-			thunkApi.dispatch(descargarChats());
-			thunkApi.dispatch(limpiarContactos());
-			thunkApi.dispatch(limpiarMensajes());
-		} else {
-			throw new Error(resp.msg);
-		}
+		localStorage.removeItem("token");
+		thunkApi.dispatch(logout());
+		thunkApi.dispatch(descargarDatos());
+		thunkApi.dispatch(descargarChats());
+		thunkApi.dispatch(limpiarContactos());
+		thunkApi.dispatch(limpiarMensajes());
 	},
 );
 
@@ -87,13 +84,13 @@ export const authSlice = createSlice({
 		logged: false,
 	},
 	reducers: {
-		loginUsuario: () => {
+		login: () => {
 			return {
 				checking: false,
 				logged: true,
 			};
 		},
-		logoutUsuario: () => {
+		logout: (state) => {
 			return {
 				...state,
 				checking: false,
@@ -110,6 +107,4 @@ export const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { useLoginMutation } = authApi;
-
-export const { loginUsuario, logoutUsuario, tokenInvalido } = authSlice.actions;
+export const { logout, login, tokenInvalido } = authSlice.actions;

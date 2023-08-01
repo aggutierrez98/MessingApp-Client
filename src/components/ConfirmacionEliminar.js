@@ -7,7 +7,7 @@ import { eliminarContactoAsync } from "../store/slices/contacts.slice";
 export const ConfirmacionEliminar = ({ closeModal, uid: id }) => {
 	const dispatch = useDispatch();
 	const { socket } = useContext(SocketContext);
-	const { uid } = useSelector((state) => state.usuario);
+	const { uid } = useSelector((state) => state.user);
 
 	const eliminar = () => {
 		closeModal();

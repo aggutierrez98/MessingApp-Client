@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { NotificacionCard } from "./NotificacionCard";
 
 export const Notifiaciones = () => {
-	const { notificaciones } = useSelector((state) => state.contactos);
+	const { notificaciones } = useSelector((state) => state.contacts);
 
 	return (
 		<>
