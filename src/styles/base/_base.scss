@@ -16,6 +16,7 @@ body {
   --blue: #{$blue};
   --alternative--blue: #{$dark-blue};
   --text: #2e2e2e;
+  --background-transparent: #b7c6cf3f;
 
   &.dark-mode {
     --background: #{$white-dark};
@@ -26,6 +27,7 @@ body {
     --blue: #{$blue-light};
     --alternative--blue: #{$blue};
     --text: #e2e2e2;
+    --background-transparent: #03131d33;
   }
 }
 

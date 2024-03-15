@@ -1,14 +1,12 @@
 {
-    "editor.codeActionsOnSave": {
-        // "source.fixAll": true,
-        "source.organizeImports": true
-    },
-    "[javascript]": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "rome.rome"
-    },
-    "[javascript-react]": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "rome.rome"
-    }
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascript-react]": {
+    "editor.formatOnSave": true
+  }
 }

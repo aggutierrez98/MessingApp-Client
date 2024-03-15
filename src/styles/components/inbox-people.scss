@@ -1,9 +1,8 @@
 .inbox_people {
   position: relative;
-  background: var(--background) none repeat scroll 0 0;
   overflow: hidden;
   width: 35%;
-  border-right: 0.5px solid rgba(20, 30, 96, 0.25);
+  border-right: 0.5px solid var(--background-messages);
   height: 100%;
   min-width: 300px;
 }

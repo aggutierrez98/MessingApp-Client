@@ -3,7 +3,9 @@
   flex-direction: column;
   position: absolute;
   background-color: var(--secondary);
-  width: calc(35% - 1px);
+  // width: calc(35% - 1px);
+  width: 35%;
+  border-right: 0.5px solid var(--background-messages);
   height: 100%;
   z-index: 2;
   min-width: 300px;
@@ -43,8 +45,10 @@
 
 .perfil_contenedor-boton {
   background-color: var(--blue);
+  padding: 0;
   padding-top: 70px;
   padding-bottom: 20px;
+  // width: 100%;
   display: flex;
 }
 

@@ -17,7 +17,6 @@ export const SidebarChatItem = ({ usuario }) => {
 	};
 
 	return (
-		// rome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 		<div
 			className={`chat_list ${uid === chatActivo && "active_chat"}`}
 			onClick={onClick}

@@ -20,6 +20,8 @@ function ChatPage() {
 		return (
 			<>
 				<div className="messaging">
+				<div className="background-band" />
+
 					<div className="inbox_msg">
 						<div id="perfil" />
 						<div id="modal" />

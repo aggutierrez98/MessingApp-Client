@@ -9,6 +9,16 @@
   font-family: $monserrat;
 }
 
+.background-band {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--alternative--blue);
+  height: 140px;
+}
+
 .inbox_msg {
   position: relative;
   background-color: var(--background);
@@ -17,26 +27,6 @@
   display: flex;
   flex-direction: row;
   overflow: hidden;
-}
-
-.renders {
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  box-sizing: content-box;
-  display: flex;
-  flex-direction: row;
-}
-
-.renders-left {
-  width: 40%;
-  height: 100%;
-}
-
-.renders-right {
-  width: 60%;
-  height: 100%;
 }
 
 @media screen and (max-width: 1440px) {
